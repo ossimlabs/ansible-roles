@@ -2,5 +2,12 @@
 - name: "Install System Packages"
   package: name={{item}} state=installed disable_gpg_check=true
   become: yes
+  when: ansible_os_family == 'RedHat'
+  with_items: '{{ system_packages }}'
+
+- name: "Install System Packages"
+  package: name={{item}} state=installed
+  become: yes
+  when: ansible_os_family == 'Ubuntu'
   with_items: '{{ system_packages }}'
 ...

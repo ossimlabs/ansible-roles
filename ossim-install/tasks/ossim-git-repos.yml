@@ -1,5 +1,6 @@
 ---
 - name: App | Cloning Core Ossim Repo
   git: repo={{ ossim_core_git }}
-        dest={{ destination }}
+        dest={{ destination }}/ossim
+  become: yes
 ...

@@ -1,0 +1,22 @@
+---
+- name: initdb DB {{ansible_distribution}}
+  tags:
+  - initdb
+  shell : /usr/bin/initdb -E UTF8 -D "{{pgdata}}"
+  become: yes
+  become_user: postgres
+  ignore_errors: yes
+  args: 
+    creates: "{{pgdata}}PG_VERSION"
+  when: ansible_os_family == 'RedHat'
+
+- name: start postgresql
+  become: yes
+  tags:
+  - db
+  - dbslave
+  - restartdb
+  service: name=postgresql state=started enabled=yes
+  when: ansible_os_family == 'RedHat'
+
+...

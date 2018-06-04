@@ -1,10 +1,11 @@
 ---
 - name: Copy build scripts
   copy:
-    src: build-scripts/
+    src: build-scripts/*
     dest: "{{ destination }}"
     mode: 0774
 - name: Copy ossim-preferences
+  become: yes
   copy:
     src: ossim-preferences
     dest: "{{ destination }}"
