@@ -1,0 +1,16 @@
+---
+- name: "Install epel"
+  yum: name={{item}} state=installed
+  become: yes
+  when: ansible_os_family == 'RedHat'
+  with_items:
+    - epel-release
+
+- name: Add OSSIM repository
+  become: yes
+  when: ansible_os_family == 'RedHat'
+  yum_repository:
+    name: ossim-dev
+    description: OSSIM YUM repo
+    baseurl: "{{ ossim_yum }}"
+...

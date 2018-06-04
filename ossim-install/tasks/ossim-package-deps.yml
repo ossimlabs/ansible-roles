@@ -1,0 +1,6 @@
+---
+- name: "Install System Packages"
+  package: name={{item}} state=installed disable_gpg_check=true
+  become: yes
+  with_items: '{{ system_packages }}'
+...
