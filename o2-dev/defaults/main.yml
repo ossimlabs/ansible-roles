@@ -1,0 +1,5 @@
+---
+destination: "/home/ubuntu"
+ossim_core_git: "https://github.com/ossimlabs/ossim.git"
+pgdata: "/var/lib/pgsql/data/"
+...
