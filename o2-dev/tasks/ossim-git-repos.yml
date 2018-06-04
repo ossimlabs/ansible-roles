@@ -1,5 +1,0 @@
----
-- name: App | Cloning Core Ossim Repo
-  git: repo={{ ossim_core_git }}
-        dest={{ destination }}
-...
