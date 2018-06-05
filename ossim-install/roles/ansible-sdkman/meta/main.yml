@@ -1,0 +1,50 @@
+---
+galaxy_info:
+  author: Elliot Weiser
+  description: An Ansible role that installs/manages SDKMAN
+  company: Comcast NBC Universal
+
+  license: Apache
+
+  min_ansible_version: 2.2
+
+  platforms:
+    - name: Alpine
+      versions:
+        - any
+    - name: EL
+      versions:
+        - '7'
+        - '6'
+    - name: Fedora
+      versions:
+        - '26'
+        - '25'
+        - '24'
+    - name: Ubuntu
+      versions:
+        - artful
+        - zesty
+        - xenial
+        - trusty
+    - name: Debian
+      versions:
+        - stretch
+        - jessie
+        - wheezy
+    - name: MacOSX
+      versions:
+        - '10.12'
+
+  galaxy_tags:
+    - ci
+    - development
+    - gradle
+    - groovy
+    - java
+    - maven
+    - sbt
+    - scala
+    - sdkman
+
+dependencies: []

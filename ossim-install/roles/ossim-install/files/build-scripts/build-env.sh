@@ -1,6 +1,6 @@
 #!/bin/bash
 export PGUSER=postgres
-export OSSIM_DEV_HOME=~
+export OSSIM_DEV_HOME=/home/vagrant
 export OSSIM_DATA=/data
 export OSSIM_VERSION=1.9.0
 export OSSIM_VERSION_TAG=SNAPSHOT

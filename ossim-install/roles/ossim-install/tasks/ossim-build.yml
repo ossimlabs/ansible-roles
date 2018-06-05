@@ -1,9 +1,16 @@
 ---
 - name: Copy build scripts
   copy:
-    src: build-scripts/*
+    src: build-scripts/build-env.sh
     dest: "{{ destination }}"
     mode: 0774
+  become: yes
+- name: Copy build scripts
+  copy:
+    src: build-scripts/build-ossim.sh
+    dest: "{{ destination }}"
+    mode: 0774
+  become: yes
 - name: Copy ossim-preferences
   become: yes
   copy:

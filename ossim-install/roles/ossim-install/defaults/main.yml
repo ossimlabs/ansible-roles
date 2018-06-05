@@ -1,5 +1,6 @@
 ---
-destination: "/home/ubuntu"
+destination: "/home/vagrant"
 ossim_core_git: "https://github.com/ossimlabs/ossim.git"
+ossim_yum: "https://s3.amazonaws.com/o2-rpms/CentOS/7/dev/x86_64"
 pgdata: "/var/lib/pgsql/data/"
 ...

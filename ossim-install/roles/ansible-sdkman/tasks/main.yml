@@ -1,0 +1,10 @@
+---
+# tasks file for ansible-sdkman
+
+- include: install.yml
+
+- include: sdkman.yml
+  environment:
+    SDKMAN_DIR: '{{ sdkman_dir }}'
+  become: yes
+  become_user: '{{ sdkman_user }}'
