@@ -1,0 +1,24 @@
+---
+# defaults file for elastalert
+
+user: elastalert
+index: elastalert_status
+git_repo: https://github.com/Yelp/elastalert.git
+version: HEAD
+config: "{{ config_dir }}/elastalert.yaml"
+start_script: "{{ home_dir }}/start-elastalert.sh"
+
+home_dir: "/opt/elastalert"
+config_dir: "{{ home_dir }}/config"
+logs_dir: "{{ home_dir }}/logs"
+rules_dir: /opt/rules
+source_dir: "{{ home_dir }}/source"
+  
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  cert: /etc/elasticsearch/admin-cert
+  key: /etc/elasticsearch/admin-key
+
+supervisor_conf: "{{ config_dir }}/elastalert_supervisord.conf"

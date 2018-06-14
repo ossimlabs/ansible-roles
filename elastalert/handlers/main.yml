@@ -1,0 +1,8 @@
+---
+# handlers file for elastalert
+
+# Using direct stop/start because update command may not restart if the supervisord config was not changed.
+- name: Restart Elastalert
+  shell: "supervisorctl -c {{ supervisor_conf }} stop && {{ start_script }} &"
+  become: yes
+  # become_user: "{{ user }}"

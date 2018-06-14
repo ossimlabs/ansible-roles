@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# THIS FILE WAS TEMPLATED USING ANSIBLE! MANUAL CHANGES WILL BE ERASED!
+
+set -e
+
+retryLimit=20
+
+# Wait until Elasticsearch is online since otherwise Elastalert will fail.
+while ! curl -XGET -k "https://{{ elasticsearch.host }}:{{ elasticsearch.port }}/" --cert {{ elasticsearch.cert }} --key {{ elasticsearch.key }} 2>/dev/null
+do
+	echo "Waiting for Elasticsearch ${retryLimit}..."
+	sleep 1
+
+	# Fail if no connection after the retry limit.
+	(( retryLimit -= 1 ))
+	if (( $retryLimit == 0 )) ; then
+	    echo "Retry limit reached. Could not connect to ElasticSearch at {{ elasticsearch.host }}:{{ elasticsearch.port }} using cert:key {{ elasticsearch.cert }} : {{ elasticsearch.key }}"
+	    exit -1
+	fi
+done
+sleep 5
+
+# Check if the Elastalert index exists in Elasticsearch and create it if it does not.
+if ! curl -XGET -k "https://{{ elasticsearch.host }}:{{ elasticsearch.port }}/elastalert_status" --cert {{ elasticsearch.cert }} --key {{ elasticsearch.key }} 2>/dev/null
+then
+	echo "\nCreating Elastalert index in Elasticsearch..."
+    elastalert-create-index --config {{ config }} --index {{ index }}
+else
+    echo "\nElastalert index {{ index }} already exists in Elasticsearch."
+fi
+
+echo "Starting Elastalert..."
+exec supervisord -c {{ supervisor_conf }} -n # The `-n` option makes supervisord run in the foreground.
