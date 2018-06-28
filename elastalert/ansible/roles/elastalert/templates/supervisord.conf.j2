@@ -9,16 +9,17 @@ nodaemon=true
 directory=%(here)s
 
 [supervisorctl] # Added to resolve this issue: https://askubuntu.com/questions/911940/error-ini-file-does-not-include-supervisorctl-section
+serverurl=http://127.0.0.1:9001
 
-# [inet_http_server] # Added to resolve this issue: https://askubuntu.com/questions/911994/supervisorctl-3-3-1-http-localhost9001-refused-connection
-# port = 127.0.0.1:9001
+[inet_http_server] # Added to resolve this issue: https://askubuntu.com/questions/911994/supervisorctl-3-3-1-http-localhost9001-refused-connection
+port=*:9001
 
 [rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 
 [program:elastalert]
 # running globally
-command = python {{ source_dir }}/elastalert/elastalert.py --config {{ config }} --verbose
+command = python2 {{ source_dir }}/elastalert/elastalert.py --config {{ config }} --verbose
 # (alternative) using virtualenv
 #command=elastalert --verbose --config {{ config }}
 process_name=elastalert

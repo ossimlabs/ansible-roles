@@ -1,0 +1,61 @@
+---
+# tasks file for elastalert
+- name: Install build dependencies
+  package:
+    state: present
+    name: "{{ item }}"
+  become: yes
+  with_items:
+    - epel-release
+    - python2-setuptools
+    - python2-devel
+    - python2-pip
+    - supervisor
+    - git
+    - gcc
+
+# Required for installing Elastalert requirements.txt
+- name: Update setuptools
+  command: pip install setuptools --upgrade
+  become: yes
+
+- name: Create Elastalert directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ home_dir }}"
+    - "{{ config_dir }}"
+    - "{{ logs_dir }}"
+    - "{{ rules_dir }}"
+  become: yes
+
+- name: Clone source code
+  git:
+    repo: "{{ git_repo }}"
+    dest: "{{ source_dir }}"
+    version: "{{ version }}"
+  notify: "Restart Elastalert"
+  become: yes
+
+- name: Install Elastalert requirements
+  pip:
+    requirements: "{{ source_dir }}/requirements.txt"
+  become: yes
+
+- name: Start Supervisor service
+  service:
+    name: supervisord
+    enabled: yes
+    state: started
+  become: yes
+
+- name: Template configuration files
+  template:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+  become: yes
+  with_items:
+    - { dest: "{{ config }}", src: "elastalert.yaml.j2" }
+    - { dest: "{{ start_script }}", src: "start-elastalert.sh.j2" }
+    - { dest: "{{ supervisor_conf }}", src: "supervisord.conf.j2" }

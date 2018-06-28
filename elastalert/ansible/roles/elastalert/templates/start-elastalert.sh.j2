@@ -4,7 +4,7 @@
 
 set -e
 
-retryLimit=20
+retryLimit=10
 
 # Wait until Elasticsearch is online since otherwise Elastalert will fail.
 while ! curl -XGET -k "https://{{ elasticsearch.host }}:{{ elasticsearch.port }}/" --cert {{ elasticsearch.cert }} --key {{ elasticsearch.key }} 2>/dev/null
