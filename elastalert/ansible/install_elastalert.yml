@@ -1,7 +1,0 @@
----
-- hosts: elastalert
-  vars:
-    elasticsearch:
-      host: localhost
-  roles:
-    - elastalert
