@@ -1,0 +1,8 @@
+---
+s3_ntf_dir_path: s3://o2-test-data/test
+
+nfs_copy_loc: /mnt/ossim-data-rel/mydg/test
+
+stager_loc: /data/mydg/test/
+
+raster_add_endpoint: https://omar-rel.ossim.io/omar-sqs-stager/dataManager/addRaster?filename={{ stager_loc }}"$ntf"&background=true&buildThumbnails=true&buildOverviews=true&buildHistograms=true&buildHistogramsWithR0=false&useFastHistogramStaging=false&overviewType=ossim_tiff_box&overviewCompressionType=NONE&thumbnailSize=512&thumbnailType=jpeg&thumbnailStretchType=auto-minmax
