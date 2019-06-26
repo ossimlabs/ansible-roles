@@ -12,7 +12,3 @@ instance_type: {INSTANCE_TYPE} #Example: m5.large
 key_pair: {KEYPAIR} 
 subnet_id: {SUBNET ID}
 region: us-east-1
-
-ansible_user: {USER} #Example: centos 
-ansible_ssh_private_key: {PATH TO PEM} #Example: ~/.ssh/key.pem
-ansible_ssh_common_args: -o StrictHostKeyChecking=no
