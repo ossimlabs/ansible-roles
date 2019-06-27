@@ -1,0 +1,14 @@
+#Created by Cale Cohee 6/3/19 
+#Modified by Jakob Klemm 6/26/19 for publishing in Ossimlabs public Ansible Roles Repo
+
+#If you don't need a certain parameter, be sure to delete it from this file and from ../create_cluster.yml
+ec2_instance_names: {NODE NAMES} #Example: worker-1, worker-2 (MUST HAVE COMMA-SPACE ", " BETWEEN NAMES )
+
+#Fill in desired values for everything in brackets. Most of these can be easily found from the info on existing EC2 instances.
+security_groups: {SECURITY GROUPS} #Example: dev-sg, docker-swarm-sg
+ami_id: {AMI ID} 
+iam_profile: {IAM PROFILE}
+instance_type: {INSTANCE_TYPE} #Example: m5.large
+key_pair: {KEYPAIR} 
+subnet_id: {SUBNET ID}
+region: us-east-1
