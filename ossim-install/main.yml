@@ -1,0 +1,6 @@
+---
+- hosts: o2Dev
+  roles: 
+    - ansible-sdkman
+    - ossim-install
+...

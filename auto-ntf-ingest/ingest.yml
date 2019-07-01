@@ -1,0 +1,18 @@
+---
+- hosts: nfs
+  name: Ingest NTFs
+
+  tasks:
+    - name: Make mount directory
+      file:
+        path: "{{ nfs_copy_loc }}"
+        state: directory
+        group: ec2-user
+        owner: ec2-user
+        mode: 0777
+
+    - name: Copy NTFs to nfs mount directory
+      command: aws s3 sync {{ s3_ntf_dir_path }} {{ nfs_copy_loc }}
+
+    - name: Call ingest API
+      shell: for ntf in $(ls {{ nfs_copy_loc }}/); do curl -X POST "{{ raster_add_endpoint }}"; done

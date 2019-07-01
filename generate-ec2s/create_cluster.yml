@@ -1,0 +1,25 @@
+# Created by Cale Cohee on 6/3/19
+#Modified by Jakob Klemm 6/26/19 for publishing in Ossimlabs public Ansible Roles Repo
+#Be sure to remove any values that are not used
+---
+- name: create ec2 cluster
+  hosts: localhost
+  tasks:
+    - name: create ec2s
+      ec2:
+        count: 1
+        groups: "{{ security_groups.split(', ') }}"
+        image: "{{ ami_id }}"
+        instance_profile_name: "{{ iam_profile }}"
+        instance_tags:
+          Name: "{{ item }}"
+          #ProjectCode: PROJECT CODE   (Uncomment this and add project code for EC2 if desired)
+        instance_type: "{{ instance_type }}"
+        key_name: "{{ key_pair }}"
+        state: present
+        vpc_subnet_id: "{{ subnet_id }}"
+        region: "{{ region }}"
+        wait: yes
+      with_items:
+         "{{ ec2_instance_names.split(', ') }}"
+       
