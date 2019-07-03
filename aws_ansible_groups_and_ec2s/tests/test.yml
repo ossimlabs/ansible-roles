@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  connection: local
+
+  roles:
+  - benbuzzelli.aws_ansible_groups_and_ec2s

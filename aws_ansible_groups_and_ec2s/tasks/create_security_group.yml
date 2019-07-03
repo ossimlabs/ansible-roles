@@ -1,0 +1,9 @@
+---
+- name: Setting up Security Group
+  ec2_group:
+    name: "{{ group_name }}"
+    description: "{{ description }}"
+    vpc_id: "{{ vpc_id }}"
+    rules: "{{  group_rules }}"
+    rules_egress: "{{ rules_egress }}"
+    region: us-east-1

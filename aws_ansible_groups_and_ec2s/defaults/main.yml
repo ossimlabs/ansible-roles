@@ -1,0 +1,49 @@
+---
+# defaults file for /etc/ansible/roles/aws
+
+#----------------#
+# path variables #
+#----------------#
+# This needs to be set in vars/main.yml if your path to this role is different
+role_path: /etc/ansible/roles/benbuzzelli.aws_ansible_groups_and_ec2s/
+
+# This variable is only for convienence when this role stores your ec2 ssh command.
+# Set this to your key pair path for the instance you're creating if you know it.
+key_pair_path: your_key_path # The path where your associated ssh key pair is.
+
+#---------------#
+# ec2 variables #
+#---------------#
+# image and subnet_id MUST BE SET for the creation of an EC2 instance 
+key_name: # The key pair to assign to your instance. MUST BE SET
+region: us-east-1 # The availability zone in which your instance will be located.
+instance_type: t2.micro # Determines your instance’s CPU capacity, memory, and storage.
+image: ami-0b898040803850657 # default: Amazon Linux 2 AMI (HVM), SSD Volume Type (64-bit x86)
+instance_tags:
+  Name: sampleFtpServer
+  Owner: default
+monitoring: no
+vpc_subnet_id: # MUST BE SET. Set this in vars/main.yml under the name of an existing subnet.
+assign_public_ip: yes
+group: # The security group for your instance to use. 
+       # You'll want to set this in order to ssh into your new ec2.
+       # You can also set this to group_name's value if you are making a new security group.
+
+#--------------------------#
+# security group variables #
+#--------------------------#
+group_name: sampleSecurityGroup # The name of your security group
+description: A sample security group # A description of your security group. Change this in vars/main.yml.
+vpc_id: # The ID for which VPC you want the security group to fall under. MUST BE SET to create a new security group
+group_rules: # A list of the group's inbound firewall rules.
+  - proto: tcp # The protocol (e.g. tcp or udp)
+    from_port: 22
+    to_port: 22
+    cidr_ip: 0.0.0.0/0
+  - proto: tcp
+    from_port: 80
+    to_port: 80
+    cidr_ip: 0.0.0.0/0
+rules_egress:
+  - proto: all
+    cidr_ip: 0.0.0.0/0
