@@ -25,10 +25,16 @@ Using `ansible-galaxy`:
 $ ansible-galaxy install benbuzzelli.aws_ansible_groups_and_ec2s
 ```
 
-Using `git`:
+Using `git` original repo:
 ```
 $ git clone https://github.com/benbuzzelli/aws-ansible-groups-and-ec2s.git
 ```
+
+Using `git` ossim repo:
+```
+$ git clone https://github.com/ossimlabs/ansible-roles.git
+```
+*If you're installing via the ossim repo, be sure to change the `role_path` variable.*
 
 Role Variables
 --------------
