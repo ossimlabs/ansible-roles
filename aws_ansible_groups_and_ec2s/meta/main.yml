@@ -6,7 +6,8 @@ galaxy_info:
 
   min_ansible_version: 2.4
 
-  galaxy_tags: []
+  galaxy_tags:
     - create-security-group
     - create-ec2
-  
+
+dependencies: []
