@@ -10,4 +10,4 @@
 
 - import_tasks: store_ssh_command.yml
   tags:
-      - create-ec2
+    - create-ec2
