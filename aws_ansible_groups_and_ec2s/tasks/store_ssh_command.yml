@@ -6,7 +6,7 @@
     marker: ''
     block: |
       instance: {{ item.tags.Name }} - created: {{ ansible_date_time.date }}
-      ssh -i path_to_key/{{ key_name }}.pem ami-specific-user@{{ item.public_dns_name }}
+      ssh -i {{ key_pair_path }}/{{ key_name }}.pem ami-specific-user@{{ item.public_dns_name }}
     insertafter: EOF
   with_items: '{{ ec2_out.instances }}'
   become: yes
