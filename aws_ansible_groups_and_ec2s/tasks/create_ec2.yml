@@ -1,0 +1,16 @@
+---
+- name: Provision an EC2 Instance
+  ec2:
+    key_name: "{{ key_name }}"
+    region: "{{ region }}"
+    instance_type: "{{ instance_type }}"
+    image: "{{ image }}"
+    wait: yes
+    wait_timeout: 500
+    count: 1
+    instance_tags: "{{ instance_tags }}"
+    monitoring: "{{ monitoring }}"
+    vpc_subnet_id: "{{ vpc_subnet_id }}"
+    assign_public_ip: "{{ assign_public_ip }}"
+    group: "{{ group }}"
+  register: ec2_out
