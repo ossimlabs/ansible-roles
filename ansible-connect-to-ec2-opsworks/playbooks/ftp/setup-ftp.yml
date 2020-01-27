@@ -1,0 +1,6 @@
+---
+- name: Spin up ec2
+  hosts: localhost
+  connection: local
+  roles:
+    - ftp/create-ec2

@@ -1,0 +1,5 @@
+---
+- name: Do hello world
+  copy:
+    content: test
+    dest: /ben/testfile.txt

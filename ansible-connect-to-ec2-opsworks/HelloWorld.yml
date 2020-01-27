@@ -1,0 +1,7 @@
+---
+- name: Hello World Example
+  hosts: smv_ftp
+  become: yes
+  become_user: root
+  roles:
+    - HelloWorld

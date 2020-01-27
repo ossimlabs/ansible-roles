@@ -1,0 +1,5 @@
+[smv_ftp]
+10.30.30.99
+
+[smv_ftp:vars]
+ansible_user=benbuzzelli
