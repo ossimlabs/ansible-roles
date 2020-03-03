@@ -1,0 +1,34 @@
+---
+- name: Create User
+  user:
+    name: "{{item.username}}"
+    password: "{{ item.password | password_hash('sha512') }}"
+    createhome: yes
+    home: /home/{{item.username}}
+  with_items: "{{users}}"
+  
+- name: Add user to user_list
+  lineinfile:
+    path: /etc/vsftpd/user_list
+    line: "{{item.username}}"
+    create: yes
+  with_items: "{{users}}"
+
+- name: Add upload directory
+  file:
+    path: /home/{{item.username}}/ftp/upload
+    state: directory
+  with_items: "{{users}}"
+
+- name: Chmod user directory
+  file:
+    path: /home/{{item.username}}/ftp
+    mode: '550'
+    owner: "{{item.username}}"
+  with_items: "{{users}}"
+
+- name: Chmod upload directory
+  file:
+    path: /home/{{item.username}}/ftp/upload
+    mode: '750'
+  with_items: "{{users}}"

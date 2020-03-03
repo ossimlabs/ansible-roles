@@ -1,0 +1,14 @@
+---
+- name: Store backup vsftpd.conf
+  command: mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.backup
+
+- name: Copy in new vsftpd.conf file
+  copy:
+    src: ../config-files/vsftpd.conf
+    dest: /etc/vsftpd/vsftpd.conf
+
+- name: Restart vsftpd
+  systemd:
+    name: vsftpd
+    state: restarted
+    enabled: yes

@@ -1,0 +1,7 @@
+---
+- name: Setup FTP Server
+  hosts: gegd_ftp
+  become: yes
+  become_user: root
+  roles:
+    - ftp
