@@ -1,0 +1,4 @@
+---
+- import_tasks: install_packages.yml
+- import_tasks: init_vsftpd.yml
+- import_tasks: create_users.yml
