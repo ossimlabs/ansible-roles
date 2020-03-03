@@ -1,7 +1,7 @@
 users:
-  - user: newguy
-    username: newguy
+  - user: test-user
+    username: test
     password: password
-  - user: other
-    username: other
-    password: password
+  # - user: other
+  #   username: other
+  #   password: other
