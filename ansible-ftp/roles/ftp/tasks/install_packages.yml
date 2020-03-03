@@ -17,6 +17,11 @@
     state: started
     enabled: yes
 
+- name: Start FirewallD
+  systemd:
+    name: firewalld
+    state: started
+
 - firewalld:
     zone: public
     port: 21/tcp

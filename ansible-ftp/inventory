@@ -1,5 +1,5 @@
 [gegd_ftp]
-10.30.30.36
+10.30.30.106
 
 [gegd_ftp:vars]
 ansible_user=powerusers-benjaminbuzzellimaxar
