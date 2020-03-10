@@ -31,4 +31,5 @@
   file:
     path: /home/{{item.username}}/ftp/upload
     mode: '750'
+    owner: "{{item.username}}"
   with_items: "{{users}}"
